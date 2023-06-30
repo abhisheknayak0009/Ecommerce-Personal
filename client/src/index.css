@@ -99,3 +99,13 @@ font-family: 'Poppins', sans-serif; */
   align-items: center;
   justify-content: space-around;
 }
+
+/* Register Page */
+
+.register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  flex-direction: column;
+}
