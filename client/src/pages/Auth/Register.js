@@ -5,18 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 const Register = () => {
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [phone, setPhone] = useState("")
-    const [address, setAddress] = useState("")
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState("");
+    const [answer, setAnswer] = useState("");
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`, {
-                name,email,password,phone,address
+                name, email, password, phone, address, answer
             });
 
             if(res && res.data.success) {
@@ -33,9 +34,9 @@ const Register = () => {
   return (
     <Layout title='Register - Ecommerce App'>
         <div className='register'>
-            <h1> Register Page </h1>
             <div className='form-container'>
                 <form onSubmit={handleSubmit}>
+                <h1> Register </h1>
                 <div className="mb-3">
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" id="inputName" aria-describedby="nameHelp" placeholder='Enter your Name' required/>
                 </div>
@@ -50,6 +51,9 @@ const Register = () => {
                 </div>
                 <div className="mb-3">
                     <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} className="form-control" id="inputAddress" aria-describedby="addressHelp" placeholder='Enter your Address' required/>
+                </div>
+                <div className="mb-3">
+                    <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="form-control" id="inputAnswer" aria-describedby="answerHelp" placeholder='Name of your best friend' required/>
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
