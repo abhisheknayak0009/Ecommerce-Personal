@@ -3,7 +3,7 @@ import Layout from '../../components/Layout/Layout'
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import { useAuth } from '../../context/Auth';
+import { useAuth } from '../../context/auth';
 
 const Login = () => {
     const [email, setEmail] = useState("");
