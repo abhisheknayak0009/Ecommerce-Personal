@@ -3,6 +3,7 @@ import Layout from '../../components/Layout/Layout'
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import "../../styles/AuthStyles.css";
 import { useAuth } from '../../context/auth';
 
 const Login = () => {
@@ -49,7 +50,7 @@ const Login = () => {
                         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="inputPassword" aria-describedby="passowrdHelp" placeholder='Enter your Password' required/>
                     </div>
                     <div className="mb-3">
-                        <button type="submit" className="btn btn-primary" onClick={() => {navigate('/forgot-password')}}>FORGOT PASSWORD</button>
+                        <button type="submit" className="btn forgot-btn" onClick={() => {navigate('/forgot-password')}}>FORGOT PASSWORD</button>
                     </div>
                     <button type="submit" className="btn btn-primary">LOGIN</button>
                 </form>
