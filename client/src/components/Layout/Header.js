@@ -22,7 +22,7 @@ const Header = () => {
   };
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+      <nav className="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark fixed-top" data-bs-theme="dark">
         <div className="container-fluid">
           <button
             className="navbar-toggler"
@@ -39,8 +39,8 @@ const Header = () => {
             <Link to="/" className="navbar-brand">
               🛒 Ecommerce App
             </Link>
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <SearchInput />
+            <SearchInput />
+            <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink to="/" className="nav-link ">
                   Home

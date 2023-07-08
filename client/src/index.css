@@ -25,7 +25,7 @@
 }
 
 .active {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid whitesmoke;
 }
 
 .navbar-brand {
@@ -55,7 +55,7 @@
 
 .footer {
   color: white;
-  padding: 25px;
+  padding: 4px;
   background: #000000;
   /* fallback for old browsers */
   background: -webkit-linear-gradient(to right,
@@ -148,4 +148,18 @@
   background-color: #434343 !important;
   color: white;
   padding: 20px 0px;
+}
+
+.navbar-collapse {
+  justify-content: space-between;
+}
+
+.ant-badge {
+  font-family: "Poppins", sans-serif;
+  color: rgba(255,255,255, 0.65);
+  font-size: 17px;
+}
+
+.ant-badge .ant-badge-count {
+  background-color: #198754;
 }
