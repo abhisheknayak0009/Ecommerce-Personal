@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import "../../styles/AuthStyles.css";
+import "../../styles/LoginRegisterStyles.css";
 import { useAuth } from '../../context/auth';
 
 const Login = () => {
@@ -40,20 +41,38 @@ const Login = () => {
     return (
         <Layout title='Login - Ecommerce App'>
             <div className='register'>
-                <div className='form-container'>
-                    <form onSubmit={handleSubmit}>
-                    <h1> Login </h1>
-                    <div className="mb-3">
-                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder='Enter your Email' required/>
+                <div className="register-login">
+                    <div className="register-login-wrapper">
+                        <div className="login-banner" style={{backgroundImage: 'url(images/bg-01.jpg)'}}>
+                            <span className="login-banner-title">
+                                Sign In
+                            </span>
+                        </div>
+                        <form className="login-form" onSubmit={handleSubmit}>
+                            <div className="input-wrapper validate-input m-b-26 alert-validate" data-validate="Username is required">
+                                <span className="input-label">Email ID: </span>
+                                <input className="input-box" type="email" value={email} onChange={(e) => setEmail(e.target.value)} id="inputEmail" aria-describedby="emailHelp" placeholder='Enter your Email' required />
+                                <span className="focus-input" />
+                            </div>
+                            <div className="input-wrapper validate-input m-b-18 alert-validate" data-validate="Password is required">
+                                <span className="input-label">Password</span>
+                                <input className="input-box "type="password" value={password} onChange={(e) => setPassword(e.target.value)} id="inputPassword" aria-describedby="passowrdHelp" placeholder='Enter your Password' required />
+                                <span className="focus-input" />
+                            </div>
+                            <div className="flex-sb-m w-full p-b-30">
+                                <div>
+                                    <a className="forgot-password-link" onClick={() => {navigate('/forgot-password')}}>
+                                        Forgot Password?
+                                    </a>
+                                </div>
+                            </div>
+                            <div className="login-button-wrapper">
+                                <button  type="submit" className="login-button">
+                                    Login
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div className="mb-3">
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="inputPassword" aria-describedby="passowrdHelp" placeholder='Enter your Password' required/>
-                    </div>
-                    <div className="mb-3">
-                        <button type="submit" className="btn forgot-btn" onClick={() => {navigate('/forgot-password')}}>FORGOT PASSWORD</button>
-                    </div>
-                    <button type="submit" className="btn btn-primary">LOGIN</button>
-                </form>
                 </div>
             </div>
         </Layout>
