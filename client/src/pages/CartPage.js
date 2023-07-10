@@ -80,62 +80,85 @@ const CartPage = () => {
   return (
     <Layout>
       <div className=" cart-page">
-        <div className="row">
-          <div className="col-md-12">
-            <h1 className="text-center bg-light p-2 mb-1">
+        <div className="cart-banner" style={{backgroundImage: 'url(images/shoes-cart-1.jpg)'}}>
+          <span className="cart-banner-title">
               {!auth?.user
                 ? "Hello Guest"
                 : `Hello  ${auth?.token && auth?.user?.name}`}
-              <p className="text-center">
-                {cart?.length
-                  ? `You Have ${cart.length} items in your cart ${
-                      auth?.token ? "" : "please login to checkout !"
-                    }`
-                  : " Your Cart Is Empty"}
-              </p>
-            </h1>
-          </div>
+          </span>
+          <p className="cart-banner-subtitle text-center">
+            {cart?.length
+              ? `You Have ${cart.length} items in your cart. ${
+                  auth?.token ? "" : "Please login to checkout !"
+                }`
+              : " Your Cart Is Empty"}
+          </p>
         </div>
-        <div className="container ">
+        <div className="container cart-container">
           <div className="row ">
-            <div className="col-md-7  p-0 m-0">
+            <div className="col-md-7 p-0 m-0">
+              <div className="d-flex justify-content-between align-items-center mb-4">
+                <h3 className="fw-normal mb-0 text-black">Shopping Cart</h3>
+                <div>
+                  <h3 className="fw-normal mb-0 text-black">Total Items - {cart.length}</h3>
+                </div>
+              </div>
               {cart?.map((p) => (
-                <div className="row card flex-row" key={p._id}>
-                  <div className="col-md-4">
-                    <img
-                      src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
-                      className="card-img-top"
-                      alt={p.name}
-                      width="100%"
-                      height={"130px"}
-                    />
-                  </div>
-                  <div className="col-md-4">
-                    <p>{p.name}</p>
-                    <p>{p.description.substring(0, 30)}</p>
-                    <p>Price : {p.price}</p>
-                  </div>
-                  <div className="col-md-4 cart-remove-btn">
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => removeCartItem(p._id)}
-                    >
-                      Remove
-                    </button>
+              <div className="card rounded-3 mb-4">
+                <div className="card-body p-4" key={p._id}>
+                  <div className="row d-flex justify-content-between align-items-center">
+                    <div className="col-md-3 col-lg-3 col-xl-3">
+                      <img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} className="img-fluid rounded-3" alt="Cotton T-shirt" />
+                    </div>
+                    <div className="col-md-4 col-lg-4 col-xl-4">
+                      <p className="lead fw-normal mb-2">{p.name}</p>
+                      <p><span className="text-muted">{p.description.substring(0, 30)} </span></p>
+                    </div>
+                    <div className="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
+                      <h5 className="mb-0">${p.price}</h5>
+                    </div>
+                    <div className="col-md-2 col-lg-2 col-xl-2 text-end">
+                      <div className="remove-button-wrapper">
+                        <button
+                          className="remove-button"
+                          onClick={() => removeCartItem(p._id)}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))}
+                </div>
+                ))}
             </div>
-            <div className="col-md-4 cart-summary ">
-              <h2>Cart Summary</h2>
-              <p>Total | Checkout | Payment</p>
-              <hr />
-              <h4>Total : {totalPrice()} </h4>
+            <div className="col-md-4 cart-summary rounded-3 mb-4">
+              <div className="cart-summary-title"><h2>Cart Summary</h2></div>
+              <ul className="list-group list-group-flush">
+                <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                  Products
+                  <span>{totalPrice()}</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center px-0">
+                  Shipping
+                  <span>$0.00</span>
+                </li>
+                <li className="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                  <div>
+                    <strong>Total amount</strong>
+                    <strong>
+                      <p className="mb-0">(including VAT)</p>
+                    </strong>
+                  </div>
+                  <span><strong>{totalPrice()}</strong></span>
+                </li>
+              </ul>
+
               {auth?.user?.address ? (
                 <>
                   <div className="mb-3">
-                    <h4>Current Address</h4>
-                    <h5>{auth?.user?.address}</h5>
+                    <h5>Current Address</h5>
+                    <h6>{auth?.user?.address}</h6>
                     <button
                       className="btn btn-outline-warning"
                       onClick={() => navigate("/dashboard/user/profile")}
