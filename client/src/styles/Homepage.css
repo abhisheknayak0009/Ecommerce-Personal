@@ -10,10 +10,11 @@
 .home-page {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 100px;
 }
 
 .home-page .card {
-    background-color: rgba(128, 128, 128, 0.097);
+    /* background-color: rgba(128, 128, 128, 0.097); */
     width: 18rem;
 }
 
@@ -83,4 +84,120 @@ filters
     color: green;
     font-weight: bold;
     font-size: 20px !important;
+}
+
+.product-card {
+    position: relative;
+    width: 320px;
+    height: 400px;
+    background: #191919;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: black;
+    margin-right: 24px;
+    margin-bottom: 30px;
+}
+
+.product-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    width: 100%;
+    height: 100%;
+    background: #ebeeef;
+    transform: skewY(345deg);
+    transition: 0.5s;
+}
+
+.product-card:hover::before {
+    top: -70%;
+    transform: skewY(390deg);
+}
+
+.product-card::after {
+    content: "CORSAIR";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-weight: 600;
+    font-size: 6em;
+    color: rgba(0, 0, 0, 0.1);
+}
+
+.product-card .imgBox {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+/*
+.card .imgBox img {
+    max-width: 100%;
+    
+    transition: .5s;
+}
+
+.card:hover .imgBox img {
+    max-width: 50%;
+      
+}
+*/
+.product-card .product-content-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 2;
+    text-align: center;
+    padding: 0 10px;
+}
+
+.product-card .product-content-box h3 {
+    font-size: 18px;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-card .product-content-box .price {
+    font-size: 24px;
+    color: white;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.product-card .product-content-box .add-to-cart {
+    position: relative;
+    top: 100px;
+    opacity: 0;
+    padding: 10px 30px;
+    margin-top: 15px;
+    color: #000000;
+    text-decoration: none;
+    background: #ffce00;
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.5s;
+    width: 50%;
+}
+
+.product-card:hover .product-content-box .add-to-cart {
+    top: 0;
+    opacity: 1;
+}
+
+.mouse {
+    height: 260px;
+    width: auto;
+}
+
+.product-card .product-content-box .card-title {
+    color: #ebeeef;
+    opacity: 1;
 }

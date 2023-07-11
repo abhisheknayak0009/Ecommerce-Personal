@@ -109,14 +109,14 @@ const HomePage = () => {
   return (
     <Layout title={"All Products - Best offers "}>
       {/* banner image */}
-      <img
+      {/* <img
         src="/images/ecommerce_plp_2.jpg"
         className="banner-img"
         alt="bannerimage"
         width={"100%"}
-      />
+      /> */}
       {/* banner image */}
-      <div className="container-fluid row mt-3 home-page">
+      <div className="container-fluid row home-page">
         <div className="col-md-3 filters">
           <h4 className="text-center">Filter By Category</h4>
           <div className="d-flex flex-column">
@@ -150,51 +150,32 @@ const HomePage = () => {
           </div>
         </div>
         <div className="col-md-9 ">
-          <h1 className="text-center">All Products</h1>
+          {/* <h1 className="text-center">All Products</h1> */}
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
-              <div className="card m-2" key={p._id}>
-                <img
-                  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
-                  className="card-img-top"
-                  alt={p.name}
-                />
-                <div className="card-body">
-                  <div className="card-name-price">
-                    <h5 className="card-title">{p.name}</h5>
-                    <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                      })}
-                    </h5>
-                  </div>
-                  <p className="card-text ">
-                    {p.description.substring(0, 60)}...
-                  </p>
-                  <div className="card-name-price">
-                    <button
-                      className="btn btn-info ms-1"
-                      onClick={() => navigate(`/product/${p.slug}`)}
-                    >
-                      More Details
-                    </button>
-                    <button
-                      className="btn btn-dark ms-1"
-                      onClick={() => {
-                        setCart([...cart, p]);
-                        localStorage.setItem(
-                          "cart",
-                          JSON.stringify([...cart, p])
-                        );
-                        toast.success("Item Added to cart");
-                      }}
-                    >
-                      ADD TO CART
-                    </button>
-                  </div>
-                </div>
+             <div className="product-card" onClick={() => navigate(`/product/${p.slug}`)}>
+              <div className="imgBox">
+                <img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`} alt="mouse corsair" className="mouse" />
               </div>
+              <div className="product-content-box">
+                <h3 className="card-title">{p.name}</h3>
+                <h3 className="card-title card-price">
+                  {p.price.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </h3>
+                  <button href="#" className="add-to-cart" onClick={(e) => {
+                    e.stopPropagation()
+                    setCart([...cart, p]);
+                    localStorage.setItem(
+                      "cart",
+                      JSON.stringify([...cart, p])
+                    );
+                    toast.success("Item Added to cart");
+                  }}>Buy Now</button>
+              </div>
+            </div>
             ))}
           </div>
           <div className="m-2 p-3">
