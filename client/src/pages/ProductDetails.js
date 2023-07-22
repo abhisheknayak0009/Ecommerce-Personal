@@ -39,37 +39,31 @@ const ProductDetails = () => {
   };
   return (
     <Layout>
-      <div className="row container product-details">
-        <div className="col-md-6">
-          <img
-            src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${product._id}`}
-            className="card-img-top"
-            alt={product.name}
-            height="300"
-            width={"350px"}
-          />
-        </div>
-        <div className="col-md-6 product-details-info">
-          <h1 className="text-center">Product Details</h1>
-          <hr />
-          <h6>Name : {product.name}</h6>
-          <h6>Description : {product.description}</h6>
-          <h6>
-            Price :
-            {product?.price?.toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-            })}
-          </h6>
-          <h6>Category : {product?.category?.name}</h6>
-          <button class="btn btn-secondary ms-1">ADD TO CART</button>
+      <div className="product-details">
+        <div className="product-details-container">
+          <div className="image-container"><img src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${product._id}`} class="product-image" /></div>
+          <div className="product-details-wrapper">
+              <div className="product-description">
+                <span>SHOES</span>
+                <h1>{product.name}</h1>
+                <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
+              </div>
+              <div className="product-price">
+                <span className="price">Price :
+                  {product?.price?.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}</span>
+                <button class="add-to-cart">ADD TO CART</button>
+              </div>
+          </div>
         </div>
       </div>
       <hr />
       <div className="row container similar-products">
-        <h4>Similar Products ➡️</h4>
+        <h4>Similar Products </h4>
         {relatedProducts.length < 1 && (
-          <p className="text-center">No Similar Products found</p>
+          <p className="no-similar-products">No Similar Products found</p>
         )}
         <div className="d-flex flex-wrap">
           {relatedProducts?.map((p) => (
@@ -99,19 +93,6 @@ const ProductDetails = () => {
                   >
                     More Details
                   </button>
-                  {/* <button
-                  className="btn btn-dark ms-1"
-                  onClick={() => {
-                    setCart([...cart, p]);
-                    localStorage.setItem(
-                      "cart",
-                      JSON.stringify([...cart, p])
-                    );
-                    toast.success("Item Added to cart");
-                  }}
-                >
-                  ADD TO CART
-                </button> */}
                 </div>
               </div>
             </div>
